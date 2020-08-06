@@ -8,15 +8,15 @@ viewportElem.style.cssText += 'position:fixed; width:100%; height:100%; display:
 bodyElem.insertBefore(viewportElem, bodyElem.firstChild);
 
 class Adapter {
-  private initialized: boolean = false;
-  private callingHooks: boolean = false;
-  private designWidth: number = 750;
-  private maxWidth: number = Infinity;
-  private rem: number = 0;
-  private viewportWidth: number = 0;
-  private viewportHeight: number = 0;
-  private viewportRatio: number = 0;
-  private hooks: object;
+  private initialized = false;
+  private callingHooks = false;
+  private designWidth = 750;
+  private maxWidth = Infinity;
+  private rem = 0;
+  private viewportWidth = 0;
+  private viewportHeight = 0;
+  private viewportRatio = 0;
+  private hooks: any;
 
   constructor() {
     this.hooks = {
@@ -64,12 +64,12 @@ class Adapter {
     setTimeout(() => {
       // Get width and height of current viewport
       viewportElem.style.display = 'block';
-      var width = Number(
+      const width = Number(
         document.defaultView.getComputedStyle(
           viewportElem
         ).width.replace(/px/, '')
       );
-      var height = Number(
+      const height = Number(
         document.defaultView.getComputedStyle(
           viewportElem
         ).height.replace(/px/, '')
@@ -109,13 +109,13 @@ class Adapter {
     });
   }
   removeHook(arr: Array<Function>, fn: Function) {
-    var index = arr.indexOf(fn);
+    const index = arr.indexOf(fn);
     arr.splice(index, 1);
   }
 
 }
 
-var adapter = new Adapter();
+const adapter = new Adapter();
 
 const Remarc = {
   init: adapter.init.bind(adapter),
