@@ -2,6 +2,10 @@
   "name": "remarc",
   "version": "0.0.1",
   "description": "A library to calculate and set rem automatically.",
+  "repository": {
+  	"type": "git",
+  	"url": "https://github.com/403177368/remarc.git"
+  },
   "main": "dist/remarc.common.js",
   "scripts": {
     "build": "rollup -c"
