@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="format-detection" content="telephone=no, email=no" />
+  <title>Example</title>
+  <style type="text/css">
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .blue_div {
+    width: 7.5rem;
+    background: #0f88eb;
+    color: white;
+    font-size: 0.28rem;
+    margin: auto;
+  }
+  
+  p {
+    padding: 0.1rem;
+    text-align: center;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="blue_div">
+    <p class="p0"></p>
+    <p class="p1"></p>
+  </div>
+  <script type="text/javascript" src="../dist/remarc.umd.js"></script>
+  <script type="text/javascript">
+  Remarc.init({
+    maxWidth: 750
+  });
+  var fn = Remarc.onChange(function() {
+    var rem = Remarc.get('rem');
+    var height = Remarc.get('viewportHeight');
+    document.querySelector('.p0').innerHTML =
+      'The rem is ' +
+      rem.toFixed(2) +
+      ' px now.'
+    document.querySelector('.p1').innerHTML =
+      'And the height of this div is ' + height + 'px now.'
+
+    document.querySelector('.blue_div').style.cssText += 'height: ' + height + 'px;';
+  });
+  // setTimeout(function() {
+  //   fn();
+  // }, 3000);
+  </script>
+</body>
+
+</html>

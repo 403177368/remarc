@@ -1,0 +1,15 @@
+{
+  "name": "remarc",
+  "version": "0.0.1",
+  "description": "A library to calculate and set rem automatically.",
+  "main": "dist/remarc.common.js",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "author": "Bruce Chao",
+  "license": "MIT",
+  "devDependencies": {
+    "rollup": "^2.7.2",
+    "rollup-plugin-typescript2": "^0.27.1"
+  }
+}
