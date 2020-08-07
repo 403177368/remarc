@@ -8,6 +8,7 @@
   },
   "main": "dist/remarc.common.js",
   "scripts": {
+    "lint": "npx eslint src",
     "build": "rollup -c"
   },
   "author": "Bruce Chao",

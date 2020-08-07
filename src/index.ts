@@ -7,6 +7,11 @@ const viewportElem = document.createElement('div');
 viewportElem.style.cssText += 'position:fixed; width:100%; height:100%; display:none;';
 bodyElem.insertBefore(viewportElem, bodyElem.firstChild);
 
+type EventHandler = () => void;
+type Hooks = {
+  change: Array<EventHandler>;
+};
+
 class Adapter {
   private initialized = false;
   private callingHooks = false;
@@ -16,7 +21,7 @@ class Adapter {
   private viewportWidth = 0;
   private viewportHeight = 0;
   private viewportRatio = 0;
-  private hooks: any;
+  private hooks: Hooks;
 
   constructor() {
     this.hooks = {
@@ -94,7 +99,7 @@ class Adapter {
     }, 100);
 
   }
-  onChange(handler: Function) {
+  onChange(handler: EventHandler) {
     if (typeof handler !== 'function') {
       throw new TypeError('[soap-rem] Expect the callback to be a function.');
     }
@@ -102,13 +107,13 @@ class Adapter {
     return this.removeHook.bind(this, this.hooks['change'], handler);
   }
   callHooks(eventName: string) {
-    this.hooks[eventName].forEach((hook: Function) => {
+    this.hooks[eventName].forEach((hook: EventHandler) => {
       if (typeof hook === 'function') {
         hook();
       }
     });
   }
-  removeHook(arr: Array<Function>, fn: Function) {
+  removeHook(arr: Array<EventHandler>, fn: EventHandler) {
     const index = arr.indexOf(fn);
     arr.splice(index, 1);
   }
